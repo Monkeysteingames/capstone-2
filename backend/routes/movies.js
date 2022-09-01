@@ -70,10 +70,10 @@ router.get("/:username", ensureCorrectUserOrAdmin, async function (req, res, nex
  * Authorization required: admin or correct user
  **/
 
-router.get("/:username", ensureCorrectUserOrAdmin, async function (req, res, next) {
+router.delete("/:username", ensureCorrectUserOrAdmin, async function (req, res, next) {
     try {
       const movie = await Movie.remove(req.params.username, req.body);
-      return res.status(201).json({ movie });
+      return res.status(201).json(`movie id ${movie} removed from list`);
     } catch (err) {
       return next(err);
     }

@@ -162,7 +162,6 @@ class Movie {
      *
      * Returns { undefined }
      *
-     * Throws NotFoundError if not found.
      */
     
     static async remove(username, { movieId }) {
@@ -175,7 +174,7 @@ class Movie {
             [movieId, userId]
         );
 
-        return;
+        return movieId;
     };
 };
 
