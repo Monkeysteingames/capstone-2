@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import MovieCard from './MovieCard';
 import MovieCheckApi from './movieCheckApi';
-import { Spinner } from 'reactstrap';
+import { Spinner, Row } from 'reactstrap';
 
-function MoviesList() {
+function MoviesList({ listType }) {
     const [movies, setMovies] = useState(null);
 
     // when component has mounted retreive all popular movies from TMDB API
@@ -12,11 +12,13 @@ function MoviesList() {
 
     useEffect(function fetchUserWhenMounted() {
         async function getMovies() {
-            const res = await MovieCheckApi.getPopularMovies();
-            setMovies(res);
+        const res = await MovieCheckApi.getMovieLists(listType);
+        setMovies(res);
         }
         getMovies();
     }, []);
+
+    console.log(movies);
 
     return (
       <div>
@@ -27,9 +29,13 @@ function MoviesList() {
           >
           </Spinner> :
           <>
+          {/* TODO: add logic for handling if we've liked a movie */}
+          <h2>{listType} Movies</h2>
+          <Row>
           {movies.map((movie, i) => ( 
           <MovieCard title={movie.title} key={i} backdrop_path={movie.backdrop_path}/>
           ))}
+          </Row>
           </>
           }
       </div>
@@ -37,5 +43,4 @@ function MoviesList() {
     );
   };
 
-
-  export default MoviesList;
+export default MoviesList;

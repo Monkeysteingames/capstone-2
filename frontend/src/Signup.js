@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import { Card, CardBody, Button } from "reactstrap";
-import "./App.css";
 
 
 function Signup({ signup }) {

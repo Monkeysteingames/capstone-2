@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import { Card, CardBody, Button } from "reactstrap";
 import UserContext from "./UserContext";
 import MovieCheckApi from './movieCheckApi';
-import "./App.css";
 
 
 function Profile() {

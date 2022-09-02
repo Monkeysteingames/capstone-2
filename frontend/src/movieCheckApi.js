@@ -1,4 +1,3 @@
-
 import axios from "axios";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
@@ -43,6 +42,7 @@ class MovieCheckApi {
     console.debug("TMDB API Call:", endpoint, data, method);
 
     const url = `${TMDB_BASE_URL}${endpoint}`;
+    const { TMBD_API_KEY } = process.env;
   
     const params = (method === 'get') 
     ? {api_key : "e0a084cd13b35534c48fa5cf58a90e6e", ...data}
@@ -84,7 +84,35 @@ class MovieCheckApi {
 
   static async updateUser(username, user) {
     let res = await this.request(`users/${username}`, user, 'patch');
-    return res.user;
+    return res.data;
+  };
+
+  /** Add new movie to users liked_movies */
+
+  static async addMovie(username, data) {
+    let res = await this.request(`movies/${username}`, data, 'post');
+    return res.movie;
+  };
+
+  /** Get all users liked_movies */
+
+  static async getMovies(username, data) {
+    let res = await this.request(`movies/${username}`, data, 'get');
+    return res.movies;
+  };
+
+  /** Rate movie in users liked_movies */
+
+  static async rateMovie(username, data) {
+    let res = await this.request(`movies/${username}`, data, 'patch');
+    return res.movie;
+  };
+
+  /** Remove movie from useres liked_movies */
+
+  static async removeMovie(username, data) {
+    let res = await this.request(`movies/${username}`, data, 'delete');
+    return res;
   };
 
   // TMDB API routes ***********************************
@@ -95,39 +123,59 @@ class MovieCheckApi {
     let res = await this.tmdbRequest(`configuration`);
     console.log(res);
     return res;
-  }
+  };
 
   /** Get movies by keyword */
 
   static async getMoviesByQuery(query) {
     let res = await this.tmdbRequest(`search/multi`, query);
     return res;
-  }
-
-  /** Get movie details */
-
-  // Add code for get movies endpoint
-
-  /** Get genres */
-
-  static async getGenreData() {
-    let res = await this.tmdbRequest(`genre/movie/list`);
-    return res;
-  }
+  };
 
   /** Get popular movies */ 
 
   static async getPopularMovies() {
     let res = await this.tmdbRequest(`movie/popular`);
-    //we only want to return the movies
-    //TODO: add pagination
     return res.results;
+  };
+
+  
+  /** Get new movies */ 
+
+  static async getTopRatedMovies() {
+    let res = await this.tmdbRequest(`movie/top_rated`);
+    return res.results;
+  };
+
+  
+  /** Get upcoming releases movies */ 
+
+  static async getUpcomingMovies() {
+    let res = await this.tmdbRequest(`movie/upcoming`);
+    return res.results;
+  };
+
+  /** Call all requests for popular, upcoming, and new releases
+   * 
+   *  We're then going to combine the data into an object and send that to the front end
+   * 
+   *  On the front end we're filtering this data when we display the movieList component
+   */
+
+  static async getMovieLists(listType) {
+    let res;
+
+    if (listType === "Popular" ) {
+    res = await this.getPopularMovies();
+    } else if (listType === "Top Rated") {
+    res = await this.getTopRatedMovies();
+    } else if (listType === "Upcoming") {
+    res = await this.getUpcomingMovies();
+    }
+
+    return res;
   }
 
-  // TMBD to back-end API routes *************************
-
-  /** Update users liked movies */
-
-}
+};
 
 export default MovieCheckApi;

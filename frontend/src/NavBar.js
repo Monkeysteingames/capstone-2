@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { Navbar, NavItem } from "reactstrap";
+import { Nav, Navbar, NavItem } from "reactstrap";
 import UserContext from "./UserContext";
 
 function NavBar({ logout }) {
@@ -10,7 +10,7 @@ function NavBar({ logout }) {
   // the landing page nav will be visible at all times
 
   return (
-    <div>
+    <Nav>
       <Navbar>
         <NavItem>
           <NavLink className="nav-link" exact to="/">Movie Check</NavLink>
@@ -37,7 +37,7 @@ function NavBar({ logout }) {
         </>
         }
       </Navbar>
-    </div>
+    </Nav>
   );
 }
 

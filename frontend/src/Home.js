@@ -24,12 +24,9 @@ function Home() {
           </>
         :
           <>
-          {/* 
-          *Add a user profile portion to the nav*
-          <Liked Movies/>
-          <Recommendation Feature/>
-          <Popular Movies/>
-          */}
+          <MoviesList listType={"Popular"}/>
+          <MoviesList listType={"Top Rated"}/>
+          <MoviesList listType={"Upcoming"}/>
           </>
         }
       </div>

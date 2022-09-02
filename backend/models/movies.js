@@ -173,7 +173,7 @@ class Movie {
             AND user_id = $2`,
             [movieId, userId]
         );
-
+        
         return movieId;
     };
 };

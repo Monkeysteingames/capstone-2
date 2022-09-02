@@ -6,7 +6,8 @@ import MovieCheckApi from './movieCheckApi';
 import UserContext from './UserContext';
 import jwt from "jsonwebtoken";
 import localStorage from './hooks/localStorage';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 export const TOKEN_STORAGE_ID = "mc-token";
 

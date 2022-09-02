@@ -5,7 +5,7 @@ import UserContext from './UserContext';
 
 function MovieCard({title, backdrop_path, overview}) {
   const { currentUser } = useContext(UserContext);
-  const imgPath = `https://image.tmdb.org/t/p/w500/${backdrop_path}`
+  const imgPath = `https://image.tmdb.org/t/p/w300/${backdrop_path}`
 
   return (
     <div>
@@ -13,7 +13,8 @@ function MovieCard({title, backdrop_path, overview}) {
       body
       style={{
       backgroundColor: 'lightgray',
-      borderColor: 'lightgray'
+      borderColor: 'lightgray',
+      width: '18rem'
       }}
       >
         <CardBody>
