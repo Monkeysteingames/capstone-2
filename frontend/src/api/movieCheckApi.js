@@ -42,7 +42,6 @@ class MovieCheckApi {
     console.debug("TMDB API Call:", endpoint, data, method);
 
     const url = `${TMDB_BASE_URL}${endpoint}`;
-    const { TMBD_API_KEY } = process.env;
   
     const params = (method === 'get') 
     ? {api_key : "e0a084cd13b35534c48fa5cf58a90e6e", ...data}
@@ -128,7 +127,12 @@ class MovieCheckApi {
   /** Get movies by keyword */
 
   static async getMoviesByQuery(query) {
-    let res = await this.tmdbRequest(`search/multi`, query);
+    let data = {
+      query,
+      language : "en-US",
+      include_adult : "false"
+    }
+    let res = await this.tmdbRequest(`search/movie`, data);
     return res;
   };
 

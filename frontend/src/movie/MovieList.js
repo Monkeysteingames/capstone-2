@@ -16,24 +16,21 @@ function MoviesList({ listType }) {
         setMovies(res);
         }
         getMovies();
-    }, []);
-
-    console.log(movies);
+    }, [listType]);
 
     return (
       <div>
           {!movies ?   
           <Spinner
             color="dark"
-            type="grow"
           >
           </Spinner> :
           <>
           {/* TODO: add logic for handling if we've liked a movie */}
-          <h2>{listType} Movies</h2>
+          <h2 className="text-white">{listType} Movies</h2>
           <Row>
           {movies.map((movie, i) => ( 
-          <MovieCard title={movie.title} key={i} backdrop_path={movie.backdrop_path}/>
+          <MovieCard title={movie.title} key={i} poster_path={movie.poster_path}/>
           ))}
           </Row>
           </>

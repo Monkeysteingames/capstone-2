@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route } from "react-router-dom";
-import Home from './Home';
-import Login from './Login';
-import Signup from './Signup';
-import Profile from './Profile';
-import ProtectedRoute from './ProtectedRoute';
+import Home from '../pages/Home';
+import Login from '../pages/Login';
+import Signup from '../pages/Signup';
+import Profile from '../pages/Profile';
+import ProtectedRoute from './routes/ProtectedRoute';
 import { Redirect, Switch } from 'react-router-dom';
 
 function Routes({ login, signup, getMoviesByQuery }) {
@@ -15,6 +15,7 @@ function Routes({ login, signup, getMoviesByQuery }) {
         <Route exact path="/login"><Login login={login}/></Route>
         <Route exact path="/signup"><Signup signup={signup}/></Route>
         <ProtectedRoute exact path="/profile"><Profile /></ProtectedRoute>
+        <ProtectedRoute exact path="/search"><Profile /></ProtectedRoute>
         <Redirect to="/" />
       </Switch>
       </div>

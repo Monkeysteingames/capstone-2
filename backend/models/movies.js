@@ -37,12 +37,12 @@ class Movie {
             title,
             overview,
             userRating,
-            backdropPath }
+            poster_path }
      * 
      *  Throws BadRequestError on duplicates
      * **/
 
-    static async like(username, { movieId, title, overview, backdropPath }) {
+    static async like(username, { movieId, title, overview, posterPath }) {
         const userId = await this.getUserId(username);
 
         const duplicateCheck = await db.query(
@@ -64,20 +64,20 @@ class Movie {
             title,
             overview,
             user_rating,
-            backdrop_path)
+            poster_path)
             VALUES ($1, $2, $3, $4, 0, $5)
             RETURNING user_id AS "userId", 
             movie_id AS "movieId", 
             title, 
             overview, 
             user_rating AS "userRating", 
-            backdrop_path AS "backdropPath"`,
+            poster_path AS "posterPath"`,
             [
                 userId,
                 movieId,
                 title,
                 overview,
-                backdropPath               
+                posterPath               
             ]
         );
 
@@ -93,7 +93,7 @@ class Movie {
             title,
             overview,
             userRating,
-            backdropPath }, ...]
+            posterPath }, ...]
      * 
      * **/
 
@@ -106,7 +106,7 @@ class Movie {
                     title,
                     overview,
                     user_rating AS "userRating",
-                    backdrop_path AS "backdropPath"
+                    poster_path AS "posterPath"
             FROM liked_movies
             WHERE user_id = $1
             ORDER BY title`,
@@ -126,7 +126,7 @@ class Movie {
             title,
             overview,
             userRating,
-            backdropPath }
+            posterPath }
      *
      * Throws NotFoundError if not found.
      */
@@ -144,7 +144,7 @@ class Movie {
                     title,
                     overview,
                     user_rating AS "userRating",
-                    backdrop_path AS "backdropPath"`,
+                    poster_path AS "posterPath"`,
             [userRating, userId, movieId]
         );
 

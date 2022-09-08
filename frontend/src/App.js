@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import NavBar from './NavBar';
-import Routes from './Routes';
-import MovieCheckApi from './movieCheckApi';
-import UserContext from './UserContext';
+import NavBar from './nav/NavBar';
+import Routes from './routes/Routes';
+import MovieCheckApi from './api/movieCheckApi';
+import UserContext from './context/UserContext';
 import jwt from "jsonwebtoken";
 import localStorage from './hooks/localStorage';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 export const TOKEN_STORAGE_ID = "mc-token";
 
@@ -33,6 +32,10 @@ function App() {
     };
     getCurrentUser();
     }, [token]);
+
+  useLayoutEffect(() => {
+    document.body.style.backgroundColor = "#141414"
+  });
 
   // take form data from login form and authenticate user in DB and retrieve token
   // set the current user with our retrieved token if validated
@@ -81,7 +84,7 @@ function App() {
     <UserContext.Provider value={{currentUser, setCurrentUser}}>
       <div className='App'>
         <NavBar logout={logout} />
-        <Routes login={login} signup={signup} getMoviesByQuery={getMoviesByQuery} />    
+        <Routes login={login} signup={signup} queryMovies={queryMovies}/>    
       </div>
     </UserContext.Provider>    
   </BrowserRouter>

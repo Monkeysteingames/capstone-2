@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from 'react-router-dom';
 import { Card, CardBody, Button } from "reactstrap";
-import UserContext from "./UserContext";
-import MovieCheckApi from './movieCheckApi';
+import UserContext from "../context/UserContext";
+import MovieCheckApi from '../api/movieCheckApi';
 
 
 function Profile() {

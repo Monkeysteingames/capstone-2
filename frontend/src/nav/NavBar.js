@@ -1,18 +1,30 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { Nav, Navbar, NavItem } from "reactstrap";
-import UserContext from "./UserContext";
+import { Nav, Navbar, NavItem, Input } from "reactstrap";
+import UserContext from "../context/UserContext";
 
-function NavBar({ logout }) {
+function NavBar({ logout, getMoviesByQuery }) {
   const { currentUser } = useContext(UserContext);
   
   // if we're not logged in we only want to show the login and signup options 
   // the landing page nav will be visible at all times
+  const [formData, setFormData] = useState({
+    query : ""
+  });
+
+  function handleChange (evt) {
+    const { name, value } = evt.target;
+    setFormData(fData => ({
+      [name]: value
+    }));
+  }
+
+
 
   return (
-    <Nav>
+    <Nav >
       <Navbar>
-        <NavItem>
+        <NavItem >
           <NavLink className="nav-link" exact to="/">Movie Check</NavLink>
         </NavItem>
         {currentUser ?
@@ -23,7 +35,15 @@ function NavBar({ logout }) {
 
           <NavItem>
             <Link to="/" onClick={logout}>Log out {currentUser.username}</Link>
-          </NavItem>    
+          </NavItem>   
+
+          <NavItem>
+            <div class="input-group mb-3">
+              <Input
+                type="search"
+              />
+            </div>
+          </NavItem>
         </>
         :
         <>

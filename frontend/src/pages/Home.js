@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
-import UserContext from "./UserContext";
+import React, { useContext, useState } from 'react';
+import UserContext from "../context/UserContext";
 import { Link } from "react-router-dom";
-import MoviesList from './MovieList';
+import MoviesList from '../movie/MovieList';
 
-function Home() {
+function Home({ movieQuery={} }) {
   const currentUser = useContext(UserContext);
+  const [didSearch, setDidSearch] = useState(false);
 
     return (
       <div className='home'>
