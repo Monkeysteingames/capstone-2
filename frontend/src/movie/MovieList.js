@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import MovieCard from './MovieCard';
-import MovieCheckApi from './movieCheckApi';
-import { Spinner, Row } from 'reactstrap';
+import TmdbApi from '../api/tmdbApi';
+import { Spinner, CardGroup } from 'reactstrap';
 
 function MoviesList({ listType }) {
     const [movies, setMovies] = useState(null);
@@ -12,7 +12,7 @@ function MoviesList({ listType }) {
 
     useEffect(function fetchUserWhenMounted() {
         async function getMovies() {
-        const res = await MovieCheckApi.getMovieLists(listType);
+        const res = await TmdbApi.getMovieLists(listType);
         setMovies(res);
         }
         getMovies();
@@ -28,11 +28,12 @@ function MoviesList({ listType }) {
           <>
           {/* TODO: add logic for handling if we've liked a movie */}
           <h2 className="text-white">{listType} Movies</h2>
-          <Row>
-          {movies.map((movie, i) => ( 
-          <MovieCard title={movie.title} key={i} poster_path={movie.poster_path}/>
+          <CardGroup>
+          {movies.map((movie, i) => (
+
+          <MovieCard title={movie.title} key={i} poster_path={movie.poster_path} id={movie.id}/>
           ))}
-          </Row>
+          </CardGroup>
           </>
           }
       </div>

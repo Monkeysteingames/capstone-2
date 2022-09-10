@@ -3,7 +3,7 @@ import UserContext from "../context/UserContext";
 import { Link } from "react-router-dom";
 import MoviesList from '../movie/MovieList';
 
-function Home({ movieQuery={} }) {
+function Home() {
   const currentUser = useContext(UserContext);
   const [didSearch, setDidSearch] = useState(false);
 

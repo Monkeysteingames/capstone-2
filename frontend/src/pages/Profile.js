@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useHistory } from 'react-router-dom';
 import { Card, CardBody, Button } from "reactstrap";
 import UserContext from "../context/UserContext";
-import MovieCheckApi from '../api/movieCheckApi';
+import MovieCheckApi from '../api/tmdbApi';
 
 
 function Profile() {

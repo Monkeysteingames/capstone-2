@@ -7,7 +7,10 @@ function MovieCard({ title, poster_path, overview, id }) {
   const { currentUser } = useContext(UserContext);
   const imgPath = `https://image.tmdb.org/t/p/w300/${poster_path}`
 
+  
+
   return (
+    <div>
       <Card
       className="my-2"
       color="dark"
@@ -28,6 +31,7 @@ function MovieCard({ title, poster_path, overview, id }) {
           >details</Button>
         </CardBody>
       </Card>
+    </div>
   );
 };
 

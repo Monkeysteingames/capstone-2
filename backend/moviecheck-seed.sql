@@ -14,7 +14,7 @@ VALUES ('testuser',
         'busty@busterjovi.com',
         TRUE);
 
-INSERT INTO liked_movies (user_id, movie_id, title, overview, user_rating, backdrop_path)
+INSERT INTO liked_movies (user_id, movie_id, title, overview, user_rating, poster_path)
 VALUES (
 		1,
 		361743,

@@ -4,7 +4,9 @@ import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
 import Profile from '../pages/Profile';
-import ProtectedRoute from './routes/ProtectedRoute';
+import Search from '../pages/Search';
+import LikedMovies from '../pages/LikedMovies';
+import ProtectedRoute from '../routes/ProtectedRoute';
 import { Redirect, Switch } from 'react-router-dom';
 
 function Routes({ login, signup, getMoviesByQuery }) {
@@ -15,7 +17,8 @@ function Routes({ login, signup, getMoviesByQuery }) {
         <Route exact path="/login"><Login login={login}/></Route>
         <Route exact path="/signup"><Signup signup={signup}/></Route>
         <ProtectedRoute exact path="/profile"><Profile /></ProtectedRoute>
-        <ProtectedRoute exact path="/search"><Profile /></ProtectedRoute>
+        <ProtectedRoute exact path="/search"><Search /></ProtectedRoute>
+        <ProtectedRoute exact path="/liked-movies"><LikedMovies /></ProtectedRoute>
         <Redirect to="/" />
       </Switch>
       </div>

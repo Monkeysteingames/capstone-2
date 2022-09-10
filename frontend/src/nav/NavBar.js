@@ -1,31 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { Nav, Navbar, NavItem, Input } from "reactstrap";
+import { Nav, NavItem, Input } from "reactstrap";
 import UserContext from "../context/UserContext";
+import { FaSearch } from "react-icons/fa";
 
-function NavBar({ logout, getMoviesByQuery }) {
+
+function NavBar({ logout, queryMovies }) {
   const { currentUser } = useContext(UserContext);
-  
-  // if we're not logged in we only want to show the login and signup options 
-  // the landing page nav will be visible at all times
-  const [formData, setFormData] = useState({
-    query : ""
-  });
-
-  function handleChange (evt) {
-    const { name, value } = evt.target;
-    setFormData(fData => ({
-      [name]: value
-    }));
-  }
-
-
 
   return (
-    <Nav >
-      <Navbar>
-        <NavItem >
-          <NavLink className="nav-link" exact to="/">Movie Check</NavLink>
+    <Nav 
+    fill
+    pills
+    >
+        <NavItem>
+          <NavLink className="nav-link" exact to="/">home</NavLink>
         </NavItem>
         {currentUser ?
         <>
@@ -34,15 +23,15 @@ function NavBar({ logout, getMoviesByQuery }) {
           </NavItem>
 
           <NavItem>
-            <Link to="/" onClick={logout}>Log out {currentUser.username}</Link>
+            <Link to="/" className="nav-link" onClick={logout}>sign out</Link>
           </NavItem>   
 
           <NavItem>
-            <div class="input-group mb-3">
-              <Input
-                type="search"
-              />
-            </div>
+          <NavLink className="nav-link" exact to="/search">search movies <FaSearch/></NavLink>
+          </NavItem>
+
+          <NavItem>
+            <Link to="/" className="nav-link">{currentUser.username}'s liked movies</Link>
           </NavItem>
         </>
         :
@@ -56,7 +45,6 @@ function NavBar({ logout, getMoviesByQuery }) {
           </NavItem>
         </>
         }
-      </Navbar>
     </Nav>
   );
 }

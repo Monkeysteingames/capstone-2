@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
-import UserContext from "./UserContext";
+import UserContext from "../context/UserContext";
 
 // If we're not logged in send the user back to the landing page if attempting to access a protected route
 
@@ -17,4 +17,8 @@ const ProtectedRoute = ({ path, children }) => {
 };
 
 export default ProtectedRoute;
+
+
+
+
 

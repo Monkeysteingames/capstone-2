@@ -67,24 +67,12 @@ function App() {
     };
   };
 
-  // take form data from movie search bar to look up movie by direct name
-  
-  async function getMoviesByQuery(query) {
-    try {
-      const res = await MovieCheckApi.getMoviesByQuery(query);
-      return res;
-    } catch (e) {
-      console.error(e);
-    };
-  };
-
-
   return (       
   <BrowserRouter>
     <UserContext.Provider value={{currentUser, setCurrentUser}}>
       <div className='App'>
         <NavBar logout={logout} />
-        <Routes login={login} signup={signup} queryMovies={queryMovies}/>    
+        <Routes login={login} signup={signup} />    
       </div>
     </UserContext.Provider>    
   </BrowserRouter>
