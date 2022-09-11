@@ -47,6 +47,23 @@ router.get("/:username", ensureCorrectUserOrAdmin, async function (req, res, nex
     }
   });
 
+/** GET /[username]/[movieId]
+ * 
+ * Get movie by id
+ *
+ * Authorization required: admin or correct user
+ **/
+
+ router.get("/:username/:movieId", ensureCorrectUserOrAdmin, async function (req, res, next) {
+  try {
+    const movie = await Movie.getMovie(req.params.username, req.params.movieId);
+    return res.json({ movie });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+
 /** PATCH /[username] 
  * 
  * Update the user_rating for the specified movie being sent from the frontend 

@@ -116,6 +116,36 @@ class Movie {
         return result.rows;
     };
 
+    /** get movie by id
+     * 
+     *  Returns [{ userId,
+            movieId,
+            title,
+            overview,
+            userRating,
+            posterPath }, ...]
+     * 
+     * **/
+
+    static async getMovie(username, movieId) {
+                const userId = await this.getUserId(username);
+        
+                const result = await db.query(
+                    `SELECT user_id AS "userId",
+                            movie_id AS "movieId",
+                            title,
+                            overview,
+                            user_rating AS "userRating",
+                            poster_path AS "posterPath"
+                    FROM liked_movies
+                    WHERE user_id = $1 
+                    AND movie_id = $2`,
+                    [userId, movieId]        
+                );
+
+                return result.rows[0];
+            };
+
     /** Update user_rating with `data`.
      *
      * Data must include:

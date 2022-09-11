@@ -1,13 +1,16 @@
-import React, { useContext  } from 'react';
-import {CardBody, CardTitle, Card, CardImg, Button} from 'reactstrap';
-import UserContext from '../context/UserContext';
+import React, { useState  } from 'react';
+import {CardBody, CardTitle, Card, CardImg, Button, Modal, ModalBody} from 'reactstrap';
+import MovieDetailsCard from '../movie/MovieDetailsCard';
 
 
-function MovieCard({ title, poster_path, overview, id }) {
-  const { currentUser } = useContext(UserContext);
-  const imgPath = `https://image.tmdb.org/t/p/w300/${poster_path}`
+function MovieCard({ title, posterPath, overview, id }) {
+  const [modal, setModal] = useState(false);
+  const imgPath = `https://image.tmdb.org/t/p/w300/${posterPath}`
+
+  const toggle = () => setModal(!modal);
 
   return (
+    <>
       <Card
       className="my-2"
       color="dark"
@@ -23,11 +26,25 @@ function MovieCard({ title, poster_path, overview, id }) {
             {title}
           </CardTitle>
           <Button
+          onClick={toggle}
           color="info"
           outline
           >details</Button>
         </CardBody>
       </Card>
+      { modal ?
+        <Modal isOpen={modal} toggle={toggle} color="dark">
+          <ModalBody>
+          <MovieDetailsCard title={title} posterPath={posterPath} overview={overview} id={id}/>
+          </ModalBody>
+          <Button color="secondary" onClick={toggle}>
+            close
+          </Button>
+        </Modal>
+        :
+        <></>
+      }
+    </>
   );
 };
 

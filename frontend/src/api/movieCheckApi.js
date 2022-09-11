@@ -74,10 +74,18 @@ class MovieCheckApi {
 
   /** Get all users liked_movies */
 
-  static async getMovies(username, data) {
-    let res = await this.request(`movies/${username}`, data, 'get');
+  static async getMovies(username) {
+    console.log(username)
+    let res = await this.request(`movies/${username}`);
     return res.movies;
   };
+
+    /** Get movie by id in user's liked_movies */
+
+    static async getMovie(username, movieId) {
+      let res = await this.request(`movies/${username}/${parseInt(movieId)}`);
+      return res.movie;
+    };
 
   /** Rate movie in users liked_movies */
 

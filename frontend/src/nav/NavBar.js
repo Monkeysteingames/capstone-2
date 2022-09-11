@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { Nav, NavItem, Input } from "reactstrap";
+import { Nav, NavItem } from "reactstrap";
 import UserContext from "../context/UserContext";
 import { FaSearch } from "react-icons/fa";
 
 
-function NavBar({ logout, queryMovies }) {
+function NavBar({ logout }) {
   const { currentUser } = useContext(UserContext);
 
   return (
@@ -31,7 +31,7 @@ function NavBar({ logout, queryMovies }) {
           </NavItem>
 
           <NavItem>
-            <Link to="/" className="nav-link">{currentUser.username}'s liked movies</Link>
+            <NavLink className="nav-link" exact to="/liked-movies">{currentUser.username}'s liked movies</NavLink>
           </NavItem>
         </>
         :

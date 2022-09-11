@@ -33,7 +33,6 @@ class TmdbApi {
 
   static async getTmdbConfig() {
     let res = await this.tmdbRequest(`configuration`);
-    console.log(res);
     return res;
   };
 

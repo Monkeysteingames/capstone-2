@@ -1,7 +1,5 @@
-import React, { useContext, useState } from "react";
-import UserContext from "../context/UserContext";
+import React, { useState } from "react";
 import MoviesQueryList from "../movie/MovieListQuery";
-import { useHistory } from 'react-router-dom';
 import { Card, CardBody, Button } from "reactstrap";
 import { FaSearch } from "react-icons/fa";
 
