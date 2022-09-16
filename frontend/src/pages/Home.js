@@ -1,26 +1,16 @@
 import React, { useContext } from 'react';
 import UserContext from "../context/UserContext";
-import { Link } from "react-router-dom";
+import LandingCarousel from '../home/Landing';
 import MoviesList from '../movie/MovieList';
 
 function Home() {
-  const currentUser = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
     return (
       <div className='home'>
         {!currentUser ? 
           <>
-            <h2>Create an account or log in Placeholder!</h2>
-            <Link to="/login">
-              <button>
-                Login 
-              </button>
-            </Link>
-            <Link to="/signup">
-              <button>
-                Sign up 
-              </button>
-            </Link>
+          <LandingCarousel />
           </>
         :
           <>

@@ -3,6 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import { Nav, NavItem } from "reactstrap";
 import UserContext from "../context/UserContext";
 import { FaSearch } from "react-icons/fa";
+import HomeButton from "../assets/home-button.png"
 
 
 function NavBar({ logout }) {
@@ -10,11 +11,17 @@ function NavBar({ logout }) {
 
   return (
     <Nav 
-    fill
-    pills
+    
     >
         <NavItem>
-          <NavLink className="nav-link" exact to="/">home</NavLink>
+          <NavLink className="nav-link" exact to="/">
+          <img
+            src={HomeButton}
+            alt="logo"
+            width="150" 
+            height="100"
+          />
+          </NavLink>
         </NavItem>
         {currentUser ?
         <>

@@ -3,7 +3,7 @@ import {CardBody, CardTitle, Card, CardImg, Button, Modal, ModalBody} from 'reac
 import MovieDetailsCard from '../movie/MovieDetailsCard';
 
 
-function MovieCard({ title, posterPath, overview, id }) {
+function MovieCard({ title, posterPath, overview, id, setRefreshMovies }) {
   const [modal, setModal] = useState(false);
   const imgPath = `https://image.tmdb.org/t/p/w300/${posterPath}`
 
@@ -35,7 +35,7 @@ function MovieCard({ title, posterPath, overview, id }) {
       { modal ?
         <Modal isOpen={modal} toggle={toggle} color="dark">
           <ModalBody>
-          <MovieDetailsCard title={title} posterPath={posterPath} overview={overview} id={id}/>
+          <MovieDetailsCard title={title} posterPath={posterPath} overview={overview} id={id} setRefreshMovies={setRefreshMovies} />
           </ModalBody>
           <Button color="secondary" onClick={toggle}>
             close

@@ -4,7 +4,7 @@ import { FaRegThumbsUp, FaCheckSquare } from "react-icons/fa";
 import MovieCheckApi from '../api/movieCheckApi';
 import UserContext from '../context/UserContext';
 
-function MovieDetailsCard({ title, posterPath, overview, id }) {
+function MovieDetailsCard({ title, posterPath, overview, id, setRefreshMovies }) {
   const { currentUser } = useContext(UserContext);
   const [isLiked, setLiked] = useState(false);
 
@@ -18,7 +18,7 @@ function MovieDetailsCard({ title, posterPath, overview, id }) {
     }
     };
     getMovie();
-  }, [id]);
+  }, [currentUser, id]);
 
   async function likeMovie() {
     const res = await MovieCheckApi.addMovie(currentUser.username, {
@@ -27,7 +27,22 @@ function MovieDetailsCard({ title, posterPath, overview, id }) {
       overview : overview, 
       posterPath : posterPath
     });
-    setLiked(true);
+    if (res) {
+      setLiked(true);
+    }
+  };
+
+  async function dislikeMovie() {
+    const res = await MovieCheckApi.removeMovie(currentUser.username, {
+      movieId : id, 
+      title : title, 
+      overview : overview, 
+      posterPath : posterPath
+    });
+    if (res) {
+      setRefreshMovies();
+      setLiked(false);
+    };
   };
 
   return (
@@ -50,6 +65,7 @@ function MovieDetailsCard({ title, posterPath, overview, id }) {
           <p>{overview}</p>
           {isLiked ? 
             <Button
+            onClick={dislikeMovie}
             color="success"
             outline
             ><FaCheckSquare/></Button>
