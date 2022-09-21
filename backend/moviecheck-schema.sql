@@ -16,5 +16,6 @@ CREATE TABLE liked_movies (
   title TEXT NOT NULL,
   overview TEXT, 
   user_rating INTEGER,
-  poster_path TEXT
+  poster_path TEXT,
+  backdrop_path TEXT
 );

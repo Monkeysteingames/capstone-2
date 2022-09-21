@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import NavBar from './nav/NavBar';
+import NavBarTesting from './nav/NavBarTesting';
 import Routes from './routes/Routes';
 import MovieCheckApi from './api/movieCheckApi';
 import UserContext from './context/UserContext';
@@ -71,8 +72,8 @@ function App() {
   <BrowserRouter>
     <UserContext.Provider value={{currentUser, setCurrentUser}}>
       <div className='App'>
-        <NavBar logout={logout} />
-        <Routes login={login} signup={signup} />    
+        <NavBarTesting logout={logout} />
+        <Routes login={login} signup={signup} />
       </div>
     </UserContext.Provider>    
   </BrowserRouter>

@@ -2,14 +2,14 @@ import React, { useEffect, useState, useContext } from 'react';
 import MovieCard from './MovieCard';
 import TmdbApi from '../api/tmdbApi';
 import MovieCheckApi from '../api/movieCheckApi';
-import { Spinner, CardGroup } from 'reactstrap';
+import { Spinner } from 'reactstrap';
 import UserContext from '../context/UserContext';
-import useToggle from '../hooks/useToggleState';
+import PaginatedMovies from './MoviesPaginator';
+import "../movie/Movies.css";
 
 function MoviesList({ listType }) {
     const [movies, setMovies] = useState(null);
     const { currentUser } = useContext(UserContext);
-    const [refreshMovies, setRefreshMovies] = useToggle();
 
     useEffect(function fetchMoviesWhenMounted() {
         async function getMovies() {
@@ -29,36 +29,31 @@ function MoviesList({ listType }) {
 
     return (
       <div>
-          {!movies ?   
-          <Spinner
-            color="dark"
-          >
-          </Spinner> :
-          <>
-          <h2 className="text-white">{listType} Movies</h2>
-          {/* if we're pulling the list from our backend, the posterPath is camel cased
-          if we're getting data from TMDB API then the poster_path is snake cased */}
-          {listType === "Liked" ?
-          <>
-            {/* backend movies */}
-            <div class="row">
-            {movies.map((movie, i) => (
-              <MovieCard title={movie.title} key={i} posterPath={movie.posterPath} overview={movie.overview} id={movie.movieId} setRefreshMovies={setRefreshMovies}/>
-            ))};
-            </div>
-          </>
-          :
-          <CardGroup>
-            {/* TMDB movies */}
-            {movies.map((movie, i) => (
-              <MovieCard title={movie.title} key={i} posterPath={movie.poster_path} overview={movie.overview} id={movie.id}/>
-            ))};
-          </CardGroup>
-          }
+          {!movies ?
+            <Spinner
+              color="dark"
+            >
+            </Spinner> 
+            :
+            <>
+            <h2 className="text-white category-title">{listType} Movies</h2>
+            {listType === "Liked" ?
+            <>
+              {/* backend movies */}
+              <div className="row">
+              {movies.map((movie, i) => (
+                <MovieCard title={movie.title} key={i} posterPath={movie.posterPath} overview={movie.overview} id={movie.movieId} />
+              ))};
+              </div>
+            </>
+            :
+            <>
+              <PaginatedMovies movies={movies} />
+            </>
+            }
           </>
           }
       </div>
-
     );
   };
 

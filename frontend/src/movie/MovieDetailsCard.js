@@ -4,13 +4,13 @@ import { FaRegThumbsUp, FaCheckSquare } from "react-icons/fa";
 import MovieCheckApi from '../api/movieCheckApi';
 import UserContext from '../context/UserContext';
 
-function MovieDetailsCard({ title, posterPath, overview, id, setRefreshMovies }) {
+function MovieDetailsCard({ title, posterPath, backdropPath, overview, id }) {
   const { currentUser } = useContext(UserContext);
   const [isLiked, setLiked] = useState(false);
 
   const imgPath = `https://image.tmdb.org/t/p/w342/${posterPath}`;
 
-  useEffect(function fetchUserWhenMounted() {
+  useEffect(function fetchMovieWhenMounted() {
     async function getMovie() {
     const res = await MovieCheckApi.getMovie(currentUser.username, id);
     if (res) {
@@ -25,7 +25,8 @@ function MovieDetailsCard({ title, posterPath, overview, id, setRefreshMovies })
       movieId : id, 
       title : title, 
       overview : overview, 
-      posterPath : posterPath
+      posterPath : posterPath,
+      backdropPath : backdropPath
     });
     if (res) {
       setLiked(true);
@@ -40,7 +41,6 @@ function MovieDetailsCard({ title, posterPath, overview, id, setRefreshMovies })
       posterPath : posterPath
     });
     if (res) {
-      setRefreshMovies();
       setLiked(false);
     };
   };

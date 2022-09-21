@@ -75,7 +75,6 @@ class MovieCheckApi {
   /** Get all users liked_movies */
 
   static async getMovies(username) {
-    console.log(username)
     let res = await this.request(`movies/${username}`);
     return res.movies;
   };

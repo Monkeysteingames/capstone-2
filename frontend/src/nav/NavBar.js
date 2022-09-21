@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { Nav, NavItem } from "reactstrap";
+import { Nav, Navbar, NavItem } from "reactstrap";
 import UserContext from "../context/UserContext";
 import { FaSearch } from "react-icons/fa";
 import HomeButton from "../assets/home-button.png"
@@ -10,9 +10,7 @@ function NavBar({ logout }) {
   const { currentUser } = useContext(UserContext);
 
   return (
-    <Nav 
-    
-    >
+    <Navbar sticky="top">
         <NavItem>
           <NavLink className="nav-link" exact to="/">
           <img
@@ -26,7 +24,7 @@ function NavBar({ logout }) {
         {currentUser ?
         <>
           <NavItem>
-            <NavLink className="nav-link" exact to="/profile">profile</NavLink>
+            
           </NavItem>
 
           <NavItem>
@@ -52,7 +50,7 @@ function NavBar({ logout }) {
           </NavItem>
         </>
         }
-    </Nav>
+    </Navbar>
   );
 }
 

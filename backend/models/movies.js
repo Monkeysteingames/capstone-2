@@ -42,7 +42,7 @@ class Movie {
      *  Throws BadRequestError on duplicates
      * **/
 
-    static async like(username, { movieId, title, overview, posterPath }) {
+    static async like(username, { movieId, title, overview, posterPath, backdropPath }) {
         const userId = await this.getUserId(username);
 
         const duplicateCheck = await db.query(
@@ -64,20 +64,23 @@ class Movie {
             title,
             overview,
             user_rating,
-            poster_path)
-            VALUES ($1, $2, $3, $4, 0, $5)
+            poster_path,
+            backdrop_path)
+            VALUES ($1, $2, $3, $4, 0, $5, $6)
             RETURNING user_id AS "userId", 
             movie_id AS "movieId", 
             title, 
             overview, 
             user_rating AS "userRating", 
-            poster_path AS "posterPath"`,
+            poster_path AS "posterPath",
+            backdrop_path AS "backdropPath"`,
             [
                 userId,
                 movieId,
                 title,
                 overview,
-                posterPath               
+                posterPath,
+                backdropPath               
             ]
         );
 
@@ -93,7 +96,8 @@ class Movie {
             title,
             overview,
             userRating,
-            posterPath }, ...]
+            posterPath
+            backdropPath }, ...]
      * 
      * **/
 
@@ -106,7 +110,8 @@ class Movie {
                     title,
                     overview,
                     user_rating AS "userRating",
-                    poster_path AS "posterPath"
+                    poster_path AS "posterPath",
+                    backdrop_path AS "backdropPath"
             FROM liked_movies
             WHERE user_id = $1
             ORDER BY title`,
@@ -123,7 +128,8 @@ class Movie {
             title,
             overview,
             userRating,
-            posterPath }, ...]
+            posterPath,
+            backdropPath }, ...]
      * 
      * **/
 
@@ -136,7 +142,8 @@ class Movie {
                             title,
                             overview,
                             user_rating AS "userRating",
-                            poster_path AS "posterPath"
+                            poster_path AS "posterPath",
+                            backdrop_path AS "backdropPath"
                     FROM liked_movies
                     WHERE user_id = $1 
                     AND movie_id = $2`,
@@ -156,7 +163,8 @@ class Movie {
             title,
             overview,
             userRating,
-            posterPath }
+            posterPath,
+            backdropPath }
      *
      * Throws NotFoundError if not found.
      */
@@ -174,7 +182,8 @@ class Movie {
                     title,
                     overview,
                     user_rating AS "userRating",
-                    poster_path AS "posterPath"`,
+                    poster_path AS "posterPath"
+                    backdrop_path AS "backdropPath`,
             [userRating, userId, movieId]
         );
 

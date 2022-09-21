@@ -3,8 +3,7 @@ import {
   Carousel,
   CarouselItem,
   CarouselControl,
-  CarouselIndicators,
-  CarouselCaption,
+  CarouselIndicators
 } from 'reactstrap';
 import LogoImg from "../assets/logo.png"
 import SearchImg from "../assets/search-img.png"

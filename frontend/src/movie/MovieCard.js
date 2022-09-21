@@ -1,9 +1,10 @@
 import React, { useState  } from 'react';
 import {CardBody, CardTitle, Card, CardImg, Button, Modal, ModalBody} from 'reactstrap';
-import MovieDetailsCard from '../movie/MovieDetailsCard';
+import MovieDetailsCard from '../movie/MovieDetailsCard';   
+import { FaEllipsisV } from "react-icons/fa";
 
 
-function MovieCard({ title, posterPath, overview, id, setRefreshMovies }) {
+function MovieCard({ title, posterPath, overview, id }) {
   const [modal, setModal] = useState(false);
   const imgPath = `https://image.tmdb.org/t/p/w300/${posterPath}`
 
@@ -16,26 +17,24 @@ function MovieCard({ title, posterPath, overview, id, setRefreshMovies }) {
       color="dark"
       inverse
       style={{
-      width: '18rem',
+      width: '20rem',
       }}
       >
-        <CardBody className='card-body opacity-0'>
+        <CardBody className='card-body'>
           <CardImg src={imgPath} >
           </CardImg>
-          <CardTitle tag="h4">
+          <CardTitle>
             {title}
           </CardTitle>
           <Button
           onClick={toggle}
-          color="info"
-          outline
-          >details</Button>
+          ><FaEllipsisV/></Button>
         </CardBody>
       </Card>
       { modal ?
         <Modal isOpen={modal} toggle={toggle} color="dark">
-          <ModalBody>
-          <MovieDetailsCard title={title} posterPath={posterPath} overview={overview} id={id} setRefreshMovies={setRefreshMovies} />
+          <ModalBody className='movie-modal center'>
+          <MovieDetailsCard title={title} posterPath={posterPath} overview={overview} id={id} />
           </ModalBody>
           <Button color="secondary" onClick={toggle}>
             close

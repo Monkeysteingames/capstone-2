@@ -1,0 +1,15 @@
+.center {
+    display: flex;
+    justify-content: center;
+    white-space: pre-wrap;
+}
+
+.category-title {
+    left: auto;
+    right: auto;
+}
+
+.movie-modal {
+    background-color: #1a1a1a;
+    color: #1a1a1a;
+}
