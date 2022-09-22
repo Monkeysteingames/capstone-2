@@ -4,7 +4,6 @@ import TmdbApi from '../api/tmdbApi';
 import { Spinner } from 'reactstrap';
 import { FaSearch } from "react-icons/fa";
 
-
 function MoviesQueryList({ query }) {
   const [movies, setMovies] = useState(null);
 
@@ -24,8 +23,8 @@ function MoviesQueryList({ query }) {
         >
         </Spinner> :
         <>
-        <h2 className="text-white"><FaSearch/> Search for: "{query}"</h2>
-        <div class="row">
+        <h2 className="col-sm-6 .order-sm-2 offset-sm-1 text-white"><FaSearch/> Search for: "{query}"</h2>
+        <div className='row'>
         {movies.map((movie, i) => (
             <MovieCard title={movie.title} key={i} posterPath={movie.poster_path} overview={movie.overview} id={movie.id} />
         ))}

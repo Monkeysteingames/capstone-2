@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Spinner, Button } from 'reactstrap';
 import MovieRow from './MovieRow';
+import { FaAngleDoubleRight, FaAngleDoubleLeft, FaAngleRight, FaAngleLeft } from "react-icons/fa"
 import "../movie/Movies.css";
 
 function MoviesPaginator({ movies }) {
@@ -66,10 +67,10 @@ function MoviesPaginator({ movies }) {
             </div>
             <div className='center'>
             <Button style={circleButtonStyle} onClick={() => changePage(0)}>
-                first
+                <FaAngleDoubleLeft/>
             </Button>
             <Button style={circleButtonStyle} onClick={() => changePage(index - 1)}>
-                prev
+                <FaAngleLeft/>
             </Button>
             <Button style={circleButtonStyle} onClick={() => changePage(0)}>
                 1
@@ -84,10 +85,10 @@ function MoviesPaginator({ movies }) {
                 4
             </Button>
             <Button style={circleButtonStyle} onClick={() => changePage(index + 1)}>
-                next
+                <FaAngleRight/>
             </Button>
             <Button style={circleButtonStyle} onClick={() => changePage(3)}>
-                last
+                <FaAngleDoubleRight/>
             </Button>
             </div>
             </>

@@ -13,17 +13,17 @@ function MoviesList({ listType }) {
 
     useEffect(function fetchMoviesWhenMounted() {
         async function getMovies() {
-        if (listType === "Liked") {
-          // API call to backend for liked movies
-          const res = await MovieCheckApi.getMovies(currentUser.username);
-          setMovies(res);
-        } else {
-          // API call to the TMDB 
-          const res = await TmdbApi.getMovieLists(listType);
-          // TODO: create mapper function to convert data to camel case
-          setMovies(res);
+          if (listType === "Liked") {
+            // API call to backend for liked movies
+            const res = await MovieCheckApi.getMovies(currentUser.username);
+            setMovies(res);
+          } else {
+            // API call to the TMDB 
+            const res = await TmdbApi.getMovieLists(listType);
+            // TODO: create mapper function to convert data to camel case
+            setMovies(res);
+          };
         };
-        }
         getMovies();
     }, [currentUser, listType]);
 
@@ -36,7 +36,7 @@ function MoviesList({ listType }) {
             </Spinner> 
             :
             <>
-            <h2 className="text-white category-title">{listType} Movies</h2>
+            <h2 className="col-sm-6 .order-sm-2 offset-sm-1 text-white">{listType} Movies</h2>
             {listType === "Liked" ?
             <>
               {/* backend movies */}

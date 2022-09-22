@@ -13,7 +13,7 @@ const Footer = () => (
         <Row className="justify-content-md-center">
         <Col sm={8}>
             <img src={TmbdLogo} height="50" alt="TMDB Logo" />
-            <p>All movie data sourced from The Movie Database API - <a href="https://www.themoviedb.org">www.themoviedb.org</a></p>
+            <p>Movie data sourced from TMDB API - <a href="https://www.themoviedb.org">www.themoviedb.org</a></p>
         </Col>
         <Col md="auto">
             <p>Website Author - Zachary George Augustine</p>

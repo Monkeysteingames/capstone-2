@@ -1,8 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from 'react-router-dom';
-import { Card, CardBody, Button } from "reactstrap";
+import { Card, CardBody, Button, CardTitle } from "reactstrap";
 import UserContext from "../context/UserContext";
-import MovieCheckApi from '../api/tmdbApi';
+import MovieCheckApi from '../api/movieCheckApi';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Form from 'react-bootstrap/Form';
 
 
 function Profile() {
@@ -50,64 +52,61 @@ function Profile() {
   };
 
   return (
-    <section>
       <Card>
         <CardBody>
-            <form onSubmit={handleSubmit}>
-              <div>
-                <label>Username</label>
-                <p className="form-control-plaintext">{formData.username}</p>
-              </div>
+            <CardTitle>{formData.username}</CardTitle>
+              <Form onSubmit={handleSubmit}>
+                <InputGroup className="mb-3">
+                  <InputGroup.Text id="first-name-label">First Name</InputGroup.Text>
+                  <Form.Control
+                    type="text"
+                    name="firstName"
+                    placeholder="First Name"
+                    aria-label="First Name"
+                    aria-describedby="first-name-label"
+                    value={formData.firstName}
+                    onChange={handleChange} />
+                </InputGroup>
 
-              <p>
-                <label>
-                <b>First name: </b>
-                <input
-                type="text"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange} />
-                </label>
-              </p>
+                <InputGroup className="mb-3">
+                  <InputGroup.Text id="last-name-label">Last Name</InputGroup.Text>
+                  <Form.Control
+                    type="text"
+                    name="lastName"
+                    placeholder="Last Name"
+                    aria-label="Last Name"
+                    aria-describedby="last-name-label"
+                    value={formData.lastName}
+                    onChange={handleChange} />
+                </InputGroup>
 
-              <p>
-                <label>
-                <b>Last name: </b>
-                <input
-                type="text"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange} />
-                </label>
-              </p>
+                <InputGroup className="mb-3">
+                  <InputGroup.Text id="email-label">Email</InputGroup.Text>
+                  <Form.Control
+                    type="text"
+                    name="email"
+                    placeholder="Email"
+                    aria-label="Email"
+                    aria-describedby="email-label"
+                    value={formData.email}
+                    onChange={handleChange} />
+                </InputGroup>
 
-              <p>
-                <label>
-                <b>Email: </b>
-                <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange} />
-                </label>
-              </p>
-
-              <p>
-                <label>
-                <b>Type in password to confirm changes: </b>
-                <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange} />
-                </label>
-              </p>
-
-              <Button>Update</Button>
-            </form>
+                <InputGroup className="mb-3">
+                <InputGroup.Text id="password">Confirm password</InputGroup.Text>
+                    <Form.Control
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    aria-label="Password"
+                    aria-describedby="password"
+                    value={formData.password}
+                    onChange={handleChange} />
+                  </InputGroup>
+              <Button type="submit">Update</Button>
+            </Form>
           </CardBody>
         </Card>
-      </section>
     );
 }
 // end

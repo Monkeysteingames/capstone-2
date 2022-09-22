@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import MoviesQueryList from "../movie/MovieListQuery";
-import { Card, CardBody, Button } from "reactstrap";
+import { Card, CardBody, Button,  } from "reactstrap";
+import InputGroup from 'react-bootstrap/InputGroup';
+import Form from 'react-bootstrap/Form';
 import { FaSearch } from "react-icons/fa";
+import "./Pages.css";
 
 function Search() {
   const [formData, setFormData] = useState({
@@ -23,31 +26,31 @@ function Search() {
   }
 
   return (
-    <div>
-        {!query ?
+    <div className="queried-movies">
+      {!query ?
         <Card>
-            <CardBody>
-                <form onSubmit={handleSubmit}>
-                <p>
-                    <label>
-                    <b>Search: </b>
-                    <input
-                    type="text"
-                    name="query"
-                    value={formData.query}
-                    onChange={handleChange} />
-                    </label>
-                </p>
-                <Button><FaSearch/></Button>
-                </form>
-            </CardBody>
+          <CardBody>
+            <Form onSubmit={handleSubmit}>
+              <InputGroup className="mb-3">
+                <InputGroup.Text id="search"><FaSearch/>Search </InputGroup.Text>
+                <Form.Control
+                  type="text"
+                  name="query"
+                  placeholder="Search"
+                  aria-label="Search"
+                  aria-describedby="search"
+                  value={formData.query}
+                  onChange={handleChange} />
+                </InputGroup>
+              <Button type="submit">Update</Button>
+            </Form>
+         </CardBody>
         </Card>
         :
         <MoviesQueryList query={query} />
-        }
+      }
     </div>
-    );
+  );
 }
-// end
 
 export default Search;

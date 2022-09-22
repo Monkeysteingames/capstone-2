@@ -12,16 +12,14 @@ function Home() {
         {!currentUser ? 
           <>
           <LandingCarousel />
-          <Footer />
           </>
         :
-          <>
+          <></>
+        }
           <MoviesList listType={"Popular"}/>
           <MoviesList listType={"Top Rated"}/>
           <MoviesList listType={"Upcoming"}/>
           <Footer />
-          </>
-        }
       </div>
     );
   };

@@ -5,11 +5,9 @@ import {
   CarouselControl,
   CarouselIndicators
 } from 'reactstrap';
-import LogoImg from "../assets/logo.png"
-import SearchImg from "../assets/search-img.png"
-import FavImg from "../assets/fav-img.png"
-
-
+import LogoImg from "../assets/logo.png";
+import SearchImg from "../assets/search-img.png";
+import FavImg from "../assets/fav-img.png";
 
 const items = [
   {

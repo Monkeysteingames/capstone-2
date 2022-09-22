@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import { Card, CardBody, Button } from "reactstrap";
-
+import InputGroup from 'react-bootstrap/InputGroup';
+import Form from 'react-bootstrap/Form';
 
 function Signup({ signup }) {
   const [formData, setFormData] = useState({
@@ -30,72 +31,74 @@ function Signup({ signup }) {
   }
 
   return (
-    <section>
       <Card>
-        <CardBody>
-            <form onSubmit={handleSubmit}>
-              <p>
-                <label>
-                <b>Username: </b>
-                <input
+        <CardBody className="center">
+          <Form onSubmit={handleSubmit}>
+            <InputGroup className="mb-3">
+              <InputGroup.Text id="username-label">Username</InputGroup.Text>
+              <Form.Control
                 type="text"
                 name="username"
+                placeholder="Username"
+                aria-label="Username"
+                aria-describedby="username-label"
                 value={formData.username}
                 onChange={handleChange} />
-                </label>
-              </p>
+            </InputGroup>
 
-              <p>
-                <label>
-                <b>Password: </b>
-                <input
+            <InputGroup className="mb-3">
+              <InputGroup.Text id="pass-label">Password</InputGroup.Text>
+              <Form.Control
                 type="password"
                 name="password"
+                placeholder="Password"
+                aria-label="Password"
+                aria-describedby="pass-label"
                 value={formData.password}
                 onChange={handleChange} />
-                </label>
-              </p>
+            </InputGroup>
 
-              <p>
-                <label>
-                <b>First name: </b>
-                <input
+            <InputGroup className="mb-3">
+              <InputGroup.Text id="first-name-label">First Name</InputGroup.Text>
+              <Form.Control
                 type="text"
                 name="firstName"
+                placeholder="First Name"
+                aria-label="First Name"
+                aria-describedby="first-name-label"
                 value={formData.firstName}
                 onChange={handleChange} />
-                </label>
-              </p>
+            </InputGroup>
 
-              <p>
-                <label>
-                <b>Last name: </b>
-                <input
+            <InputGroup className="mb-3">
+              <InputGroup.Text id="last-name-label">Last Name</InputGroup.Text>
+              <Form.Control
                 type="text"
                 name="lastName"
+                placeholder="Last Name"
+                aria-label="Last Name"
+                aria-describedby="last-name-label"
                 value={formData.lastName}
                 onChange={handleChange} />
-                </label>
-              </p>
+            </InputGroup>
 
-              <p>
-                <label>
-                <b>Email: </b>
-                <input
-                type="email"
+            <InputGroup className="mb-3">
+              <InputGroup.Text id="email-label">Email</InputGroup.Text>
+              <Form.Control
+                type="text"
                 name="email"
+                placeholder="Email"
+                aria-label="Email"
+                aria-describedby="email-label"
                 value={formData.email}
                 onChange={handleChange} />
-                </label>
-              </p>
+            </InputGroup>
 
-              <Button>Sign up</Button>
-            </form>
-          </CardBody>
-        </Card>
-      </section>
+            <Button>Sign Up</Button>
+          </Form>
+        </CardBody>
+      </Card>
     );
 }
-// end
 
 export default Signup;
