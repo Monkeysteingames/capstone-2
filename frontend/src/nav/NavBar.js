@@ -115,7 +115,7 @@ function NavBar({ logout, login, signup }) {
           </Nav>
         </Navbar.Collapse>
         </>
-        };
+        }
       </Container>
     </Navbar>
   );
