@@ -13,11 +13,11 @@ Movie Check is a website that allows you to browse movies and create a list of m
 
  - Creating a custom profile. 
  - Eidting your profile. 
-  - I wanted to give the user a custom space that gives them a unique experience
+    - I wanted to give the user a custom space that gives them a unique experience
   
  - Searching for movies sourced from TDMB (The Movie Database) API
  - Liking movies and adding them to your favorites list
-  - This is the bread and butter of website. I love movies, and also love creating lists. The favorited movie list in essence creates a viewing list of movies you've liked as well as movies you'd be interested in watching. 
+    - This is the bread and butter of website. I love movies, and also love creating lists. The favorited movie list in essence creates a viewing list of movies you've liked as well as movies you'd be interested in watching. 
 
 -----------
 
