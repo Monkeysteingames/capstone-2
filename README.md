@@ -12,7 +12,7 @@ Movie Check is a website that allows you to browse movies and create a list of m
 # Features
 
  - Creating a custom profile. 
- - Edting your profile. 
+ - Editing your profile. 
     - I wanted to give the user a custom space that gives them a unique experience
   
  - Searching for movies sourced from TDMB (The Movie Database) API
