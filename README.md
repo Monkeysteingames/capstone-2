@@ -5,14 +5,14 @@ Deployed Link: https://movie-check.surge.sh/
 
 ------------
 
-Movie Check is a website that allows you to browse movies and create a list of movies you've liked. It creates a list for you to go over your favorited movies. 
+Movie Check is a website that allows you to browse movies and create a list of movies you've liked. You are able to create your favorite movies list. 
 
 ------------
 
 # Features
 
  - Creating a custom profile. 
- - Eidting your profile. 
+ - Edting your profile. 
     - I wanted to give the user a custom space that gives them a unique experience
   
  - Searching for movies sourced from TDMB (The Movie Database) API
@@ -30,7 +30,7 @@ Movie Check is a website that allows you to browse movies and create a list of m
 
 # User Flow
 
-The landing page of the website provide an informative carousel that flips through the features of the website. The 3 main categories of premiered lists are visible while visiting not logged in. Those 3 categories are: Popular Movies, Top Movies, Upcoming Movies.
+The landing page of the website provides an informative carousel that flips through the features of the website. The are 3 visible lists of movie groups when you first open the website. Those 3 categories are: Popular Movies, Top Movies, Upcoming Movies.
 
 The user is unable to interact with the movie cards until they sign in/up. Once an account has been created the same list of movies will be visible on the home screen, minus the landing carousel. The movie cards will now show a details button that upon clicking pulls up a details panel. It provides an expanded image of the movie poster along with an overview of the movie, title, and like button. 
 
